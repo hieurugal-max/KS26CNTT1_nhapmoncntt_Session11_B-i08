@@ -1,0 +1,25 @@
+PHẦN 1: PHÂN TÍCH LỖI
+1. Các lỗi cụ thể trong bảng:
+Dòng 1 (Tiêu đề gộp ô): Vi phạm Quy tắc 1. Làm AutoFilter không nhận diện được đâu là dòng tiêu đề (Header) của bảng.
+Dòng 5 (Dòng tổng nhét giữa bảng): Vi phạm Quy tắc 4 & 5. Bộ lọc sẽ hiểu đây là điểm kết thúc của bảng, khiến toàn bộ dữ liệu từ dòng 6 trở xuống bị cắt đứt hoàn toàn, không đưa vào bộ lọc được.
+Các hàng trống: Vi phạm Quy tắc 4. Làm gãy khúc vùng dữ liệu khiến bộ lọc không quét được toàn bộ bảng.
+Ô B3 (Trần Thị Bình ): Vi phạm Quy tắc 3. Ô này bị dính khoảng trắng thừa ở đuôi
+
+
+2. Tại sao khoảng trắng ở ô B3 làm lỗi lọc?
+Bộ lọc (Filter) chạy theo cơ chế so sánh ký tự chính xác tuyệt đối (exact match). Chuỗi "Trần Thị Bình" hoàn toàn khác với "Trần Thị Bình " (có thêm khoảng trắng ẩn). Do đó, khi bạn lọc, hệ thống sẽ bỏ qua ô này
+
+
+PHẦN 2: SỬA LỖI và NGHIỆM THU
+3. Cấu trúc bảng chuẩn Database:
+Xóa bỏ dòng tiêu đề gộp ô ở trên cùng; đưa hàng tiêu đề cột (STT, Họ tên, Khoa, Điểm...) lên dòng đầu tiên.
+Dữ liệu phải liền mạch từ trên xuống dưới, không có dòng trống ngắt quãng.
+Chuyển dòng Tổng số (TỔNG SỐ CNTT: 45) xuống hẳn dưới cùng của bảng dữ liệu, không được kẹp ở giữa
+
+
+4. Cách làm sạch và thao tác lọc:
+Xóa khoảng trắng thừa: Dùng cột phụ với hàm =TRIM(ô_cần_lọc) (ví dụ =TRIM(B2)), kéo xuống hết bảng rồi Copy và Paste Values đè lại vào cột cũ
+Lọc dữ liệu chính xác:
++ Click vào bảng và nhấn Ctrl + Shift + L để bật bộ lọc
++ Ở cột Khoa / Viện: Bỏ chọn tất cả, chỉ tích vào CNTT
++ Ở cột Điểm Xét Duyệt: Chọn lọc điều kiện lớn hơn hoặc bằng () số 8.0.
